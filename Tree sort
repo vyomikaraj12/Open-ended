@@ -1,0 +1,178 @@
+
+Array
+Matrix
+Strings
+Hashing
+Linked List
+Stack
+Queue
+Binary Tree
+Binary Search Tree
+Heap
+Graph
+Searching
+Sorting
+Divide & Conquer
+Mathematical
+Geometric
+Bitwise
+Greedy
+Backtracking
+Branch and Bound
+Dynamic Programming
+Pattern Searching
+Randomized
+
+▲
+Related Articles
+Tree Sort
+Heap Sort
+Merge Sort
+QuickSort
+Binary Heap
+Time Complexity of building a heap
+Applications of Heap Data Structure
+Binomial Heap
+Fibonacci Heap | Set 1 (Introduction)
+Fibonacci Heap – Insertion and Union
+Fibonacci Heap – Deletion, Extract min and Decrease key
+Leftist Tree / Leftist Heap
+K-ary Heap
+Iterative HeapSort
+Program for Fibonacci numbers
+Program for nth Catalan Number
+Bell Numbers (Number of ways to Partition a Set)
+Binomial Coefficient | DP-9
+Permutation Coefficient
+Tiling Problem
+Gold Mine Problem
+Coin Change | DP-7
+Find minimum number of coins that make a given value
+Greedy Algorithm to find Minimum number of Coins
+K Centers Problem | Set 1 (Greedy Approximate Algorithm)
+Bubble Sort Algorithm
+Insertion Sort
+Selection Sort Algorithm
+Tree Sort
+
+Difficulty Level : Easy
+Last Updated : 23 Jun, 2022
+Tree sort is a sorting algorithm that is based on Binary Search Tree data structure. It first creates a binary search tree from the elements of the input list or array and then performs an in-order traversal on the created binary search tree to get the elements in sorted order. 
+
+
+Algorithm: 
+Step 1: Take the elements input in an array.
+Step 2: Create a Binary search tree by inserting data items from the array into the
+binary search tree
+.
+Step 3: Perform in-order traversal on the tree to get the elements in sorted order.
+Applications of Tree sort:
+Its most common use is to edit the elements online: after each installation, a set of objects seen so far is available in a structured program.
+If you use a splay tree as a binary search tree, the resulting algorithm (called splaysort) has an additional property that it is an adaptive sort, which means its working time is faster than O (n log n) for virtual inputs.
+Recommended: Please try your approach on {IDE} first, before moving on to the solution.
+Below is the implementation for the above approach:
+
+
+Pause
+
+Unmute
+Remaining Time-1:58
+1x
+Playback Rate
+
+Captions
+
+
+Fullscreen
+C++
+Java
+// Java program to
+// implement Tree Sort
+class GFG
+{
+ 
+    // Class containing left and
+    // right child of current
+    // node and key value
+    class Node
+    {
+        int key;
+        Node left, right;
+ 
+        public Node(int item)
+        {
+            key = item;
+            left = right = null;
+        }
+    }
+ 
+    // Root of BST
+    Node root;
+ 
+    // Constructor
+    GFG()
+    {
+        root = null;
+    }
+ 
+    // This method mainly
+    // calls insertRec()
+    void insert(int key)
+    {
+        root = insertRec(root, key);
+    }
+     
+    /* A recursive function to
+    insert a new key in BST */
+    Node insertRec(Node root, int key)
+    {
+ 
+        /* If the tree is empty,
+        return a new node */
+        if (root == null)
+        {
+            root = new Node(key);
+            return root;
+        }
+ 
+        /* Otherwise, recur
+        down the tree */
+        if (key < root.key)
+            root.left = insertRec(root.left, key);
+        else if (key > root.key)
+            root.right = insertRec(root.right, key);
+ 
+        /* return the root */
+        return root;
+    }
+     
+    // A function to do
+    // inorder traversal of BST
+    void inorderRec(Node root)
+    {
+        if (root != null)
+        {
+            inorderRec(root.left);
+            System.out.print(root.key + " ");
+            inorderRec(root.right);
+        }
+    }
+    void treeins(int arr[])
+    {
+        for(int i = 0; i < arr.length; i++)
+        {
+            insert(arr[i]);
+        }
+         
+    }
+ 
+    // Driver Code
+    public static void main(String[] args)
+    {
+        GFG tree = new GFG();
+        int arr[] = {5, 4, 7, 2, 11};
+        tree.treeins(arr);
+        tree.inorderRec(tree.root);
+    }
+}
+ 
